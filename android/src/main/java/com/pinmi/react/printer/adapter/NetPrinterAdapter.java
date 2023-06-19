@@ -270,7 +270,7 @@ public class NetPrinterAdapter implements PrinterAdapter {
     }
 
     @Override
-    public void printImageData(final String imageUrl, Callback errorCallback) {
+    public void printImageData(final String imageUrl, float w, float h, Callback errorCallback) {
         final Bitmap bitmapImage = getBitmapFromURL(imageUrl);
 
         if (bitmapImage == null) {

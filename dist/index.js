@@ -151,13 +151,13 @@ export var BLEPrinter = {
         }
     },
     printImage: function (imgUrl, opts) {
-        if (opts === void 0) { opts = {}; }
+        if (opts === void 0) { opts = {width: 200, height: 200}; }
         if (Platform.OS === "ios") {
             console.log("printImage is not supported on iOS");
             RNBLEPrinter.printImageData(imgUrl, opts, function (error) { return console.warn(error); });
         }
         else {
-            RNBLEPrinter.printImageData(imgUrl, function (error) {
+            RNBLEPrinter.printImageData(imgUrl,  opts.width, opts.height, function (error) {
                 return console.warn(error);
             });
         }

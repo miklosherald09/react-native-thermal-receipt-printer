@@ -262,7 +262,7 @@ public class BLEPrinterAdapter implements PrinterAdapter{
     }
 
     @Override
-    public void printImageData(String imageUrl, Callback errorCallback) {
+    public void printImageData(String imageUrl, float w, float h, Callback errorCallback) {
 
         final Bitmap bitmapImage = getBitmapFromURL(imageUrl);
 
@@ -278,7 +278,7 @@ public class BLEPrinterAdapter implements PrinterAdapter{
         final BluetoothSocket socket = this.mBluetoothSocket;
 
         try {
-            int[][] pixels = getPixelsSlow(bitmapImage);
+            int[][] pixels = getPixelsSlow(bitmapImage, w, h);
 
             OutputStream printerOutputStream = socket.getOutputStream();
 
@@ -387,9 +387,9 @@ public class BLEPrinterAdapter implements PrinterAdapter{
         return null;
     }
 
-    public static int[][] getPixelsSlow(Bitmap image2) {
+    public static int[][] getPixelsSlow(Bitmap image2, float w, float h) {
 
-        Bitmap image = resizeTheImageForPrinting(image2);
+        Bitmap image = resizeTheImageForPrinting(image2, w, h);
 
         int width = image.getWidth();
         int height = image.getHeight();
@@ -436,16 +436,16 @@ public class BLEPrinterAdapter implements PrinterAdapter{
         return luminance < threshold;
     }
 
-    public static Bitmap resizeTheImageForPrinting(Bitmap image) {
+    public static Bitmap resizeTheImageForPrinting(Bitmap image, float w, float, h) {
         // making logo size 150 or less pixels
         int width = image.getWidth();
         int height = image.getHeight();
         if (width > 200 || height > 200) {
             if (width > height) {
-                float decreaseSizeBy = (200.0f / width);
+                float decreaseSizeBy = (w / width);
                 return getBitmapResized(image, decreaseSizeBy);
             } else {
-                float decreaseSizeBy = (200.0f / height);
+                float decreaseSizeBy = (h / height);
                 return getBitmapResized(image, decreaseSizeBy);
             }
         }
