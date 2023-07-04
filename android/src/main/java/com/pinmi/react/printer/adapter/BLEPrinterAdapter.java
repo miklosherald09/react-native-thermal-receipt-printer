@@ -328,7 +328,7 @@ public class BLEPrinterAdapter implements PrinterAdapter{
         final BluetoothSocket socket = this.mBluetoothSocket;
 
         try {
-            int[][] pixels = getPixelsSlow(bitmapImage);
+            int[][] pixels = getPixelsSlow(bitmapImage, 200, 200);
 
             OutputStream printerOutputStream = socket.getOutputStream();
 

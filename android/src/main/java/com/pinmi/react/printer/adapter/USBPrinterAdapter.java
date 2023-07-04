@@ -357,7 +357,7 @@ public class USBPrinterAdapter implements PrinterAdapter {
         boolean isConnected = openConnection();
         if (isConnected) {
             Log.v(LOG_TAG, "Connected to device");
-            int[][] pixels = getPixelsSlow(bitmapImage);
+            int[][] pixels = getPixelsSlow(bitmapImage, 200, 200);
 
             int b = mUsbDeviceConnection.bulkTransfer(mEndPoint, SET_LINE_SPACE_24, SET_LINE_SPACE_24.length, 100000);
 
