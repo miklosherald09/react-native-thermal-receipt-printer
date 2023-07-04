@@ -444,7 +444,7 @@ public class USBPrinterAdapter implements PrinterAdapter {
         return luminance < threshold;
     }
 
-    public static Bitmap resizeTheImageForPrinting(Bitmap image, float w, float, h) {
+    public static Bitmap resizeTheImageForPrinting(Bitmap image, float w, float h) {
         // making logo size 150 or less pixels
         int width = image.getWidth();
         int height = image.getHeight();
